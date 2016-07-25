@@ -1,0 +1,82 @@
+[{
+
+	
+	"manufacturer": "APPLE",
+	"type": "iphon 6s",
+	"price": 1600,
+	"currency": "EUR",
+	"color": "WHITE"
+
+}, {
+	
+	"manufacturer": "SAMSUNG",
+	"type": "Galaxy s4",
+	"price": 1500,
+	"currency": "EUR",
+	"color": "PURPLE"
+	
+}, {
+	
+	"manufacturer": "SAMSUNG",
+	"type": "galaxy s5",
+	"price": 160000,
+	"currency": "HUF",
+	"color": "BLUE"
+	
+}, {
+	
+	"manufacturer": "SAMSUNG",
+	"type": "galaxy s6",
+	"price": 140000,
+	"currency": "HUF",
+	"color": "WHITE"
+	
+}, {
+	
+	"manufacturer": "HTC",
+	"type": "desire 1",
+	"price": 1200,
+	"currency": "EUR",
+	"color": "BLACK"
+
+}, {
+	
+	"manufacturer": "HTC",
+	"type": "desire 2",
+	"price": 1560000,
+	"currency": "HUF",
+	"color": "WHITE"
+	
+}, {
+	
+	"manufacturer": "HTC",
+	"type": "desire 3",
+	"price": 1300,
+	"currency": "USD",
+	"color": "BLUE"
+	
+}, {
+	
+	"manufacturer": "HTC",
+	"type": "desire 4",
+	"price": 1100,
+	"currency": "EUR",
+	"color": "GREEN"
+	
+}, {
+	
+	"manufacturer": "APPLE",
+	"type": "iphon 5s",
+	"price": 1600,
+	"currency": "EUR",
+	"color": "WHITE"
+	
+}, {
+	"manufacturer": "APPLE",
+	"type": "iphon 4s",
+	"price": 1100,
+	"currency": "USD",
+	"color": "BLACK"
+	
+
+}]
