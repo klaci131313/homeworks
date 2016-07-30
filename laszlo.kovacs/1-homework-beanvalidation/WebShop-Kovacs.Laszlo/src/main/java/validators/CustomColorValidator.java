@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package validators;
 
-import com.laszlokovacs.Color;
-import com.laszlokovacs.MobileType;
+import enums.Color;
+import dto.MobileType;
 import constraint.CustomColor;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -19,12 +14,11 @@ public class CustomColorValidator implements ConstraintValidator<CustomColor, Mo
 
     @Override
     public void initialize(CustomColor constraintAnnotation) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //Do nothing
     }
 
     @Override
     public boolean isValid(MobileType value, ConstraintValidatorContext context) {
-
         switch (value.getManufacturer()) {
             case APPLE:
                 return value.getColor() == Color.BLACK

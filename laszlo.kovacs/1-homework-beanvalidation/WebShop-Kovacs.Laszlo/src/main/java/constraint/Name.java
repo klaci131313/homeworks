@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package constraint;
 
 import static java.lang.annotation.ElementType.FIELD;
@@ -14,13 +9,13 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.ReportAsSingleViolation;
-import validators.RegistrationDayValidator;
+import validators.NameValidator;
 
 /**
  *
  * @author Laci
  */
-@Constraint(validatedBy = {RegistrationDayValidator.class})
+@Constraint(validatedBy = {NameValidator.class})
 @Retention(RUNTIME)
 @Target({FIELD, PARAMETER, TYPE})
 @ReportAsSingleViolation
