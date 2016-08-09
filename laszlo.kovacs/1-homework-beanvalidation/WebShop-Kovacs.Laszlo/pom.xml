@@ -22,7 +22,6 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.jboss.weld.se</groupId>
             <artifactId>weld-se-core</artifactId>
@@ -69,7 +68,6 @@
                 <configuration>
                     <mainClass>xyz.codingmentor.contextanddependencyinjection.Main</mainClass>
                 </configuration>
-
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -83,12 +81,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-            
-                
-      
-        
-
-    </plugins>
+            </plugin>                               
+        </plugins>
     </build>
 </project>

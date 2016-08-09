@@ -8,8 +8,7 @@ import javax.interceptor.InvocationContext;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import com.laszlokovacs.webshop.annotations.DTOQualifier;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import com.laszlokovacs.webshop.db.exceptions.InterceptorException;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 
@@ -28,14 +27,11 @@ public class BeanValidatorInterceptor {
     @AroundInvoke
     public Object validatorMethod(InvocationContext ic) {
         validateObject(ic.getParameters());
-
         try {
             return ic.proceed();
         } catch (Exception e) {
-            Logger.getLogger(BeanValidatorInterceptor.class.getName()).log(Level.SEVERE, null, e);
+            throw new InterceptorException(e);
         }
-
-        return null;
     }
 
     private void validateObject(Object[] objects) {

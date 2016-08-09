@@ -23,7 +23,6 @@ import javax.validation.constraints.Size;
     @Pattern(regexp = ".*([0-9])|[\\.\\,\\<\\>\\=\\+]+"),
     @Pattern(regexp = ".*[a-z].*"),
     @Pattern(regexp = ".*[A-Z].*"),})
-
 public @interface Password {
 
     String message() default "{Password.message}";
