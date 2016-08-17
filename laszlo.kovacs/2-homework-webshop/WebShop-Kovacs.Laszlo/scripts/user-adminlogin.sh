@@ -1,0 +1,1 @@
+curl --verbose --write-out "\n" --request POST --data @laciadmin.json --header "Content-Type: application/json" --cookie-jar cart-cookies.txt --cookie cart-cookies.txthttp://localhost:8080/WebShop-Kovacs.Laszlo-web/user/login

@@ -1,0 +1,1 @@
+curl --verbose --write-out "\n" --request POST --data --header "Content-Type: application/json" --cookie-jar cart-cookies.txt --cookie cart-cookies.txthttp://localhost:8080/WebShop-Kovacs.Laszlo-web/cart/addmobile/123222222222235678901244567890123456
