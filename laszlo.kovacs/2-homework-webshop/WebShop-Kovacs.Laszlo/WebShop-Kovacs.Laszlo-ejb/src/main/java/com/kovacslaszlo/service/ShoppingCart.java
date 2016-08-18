@@ -81,4 +81,9 @@ public class ShoppingCart {
         }
         LOG.log(Level.INFO, "{0}", "Total value: " + totalValue);
     }
+
+    public Map<MobileType, Integer> getCart() {
+        return cart;
+    }
+
 }

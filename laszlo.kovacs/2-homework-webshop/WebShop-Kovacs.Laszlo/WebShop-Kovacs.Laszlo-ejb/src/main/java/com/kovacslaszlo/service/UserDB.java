@@ -50,6 +50,7 @@ public class UserDB implements Serializable {
         return users;
     }
 
+    @ValidatorInterceptorBinding
     public boolean removeUserDTO(UserDTO user) {
         if (userList.containsKey(user)) {
             userList.remove(user.getUserName());

@@ -37,7 +37,7 @@ public class CartResource {
     }
 
     @POST
-    @Path("/purschesecart")
+    @Path("/purchasecart")
     public void purchaseCart(@Context HttpServletRequest request) {
         isValidLogin(request);
         cart.purchaseCart();

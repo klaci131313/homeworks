@@ -45,7 +45,7 @@ public class MobileTypeResource implements Serializable {
     }
 
     @POST
-    @Path("/addMobile")
+    @Path("/addmobile")
     public void addMobileType(@Context HttpServletRequest request, MobileType mobileType) {
         if (isValidAdminLogin(request)) {
             mobileTypeDB.addNewMobileType(mobileType);
