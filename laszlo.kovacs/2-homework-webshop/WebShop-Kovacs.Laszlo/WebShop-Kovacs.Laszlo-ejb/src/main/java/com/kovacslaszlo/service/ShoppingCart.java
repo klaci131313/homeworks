@@ -15,10 +15,13 @@ import javax.inject.Inject;
 @Stateful
 public class ShoppingCart {
 
-    private static final Logger LOG = Logger.getLogger(ShoppingCart.class.getName());
-    private final Map<MobileType, Integer> cart = new HashMap<>();
     @Inject
     private MobileTypeDB mobileTypeDB;
+
+    private static final Logger LOGGER
+            = Logger.getLogger(ShoppingCart.class.getName());
+
+    private final Map<MobileType, Integer> cart = new HashMap<>();
 
     public boolean addMobile(MobileType mobileType, int quantity) {
         if (mobileTypeDB.reserveMobile(mobileType, quantity)) {
@@ -76,10 +79,10 @@ public class ShoppingCart {
         int totalValue = 0;
         for (Map.Entry<MobileType, Integer> entry : cart.entrySet()) {
             totalValue += entry.getKey().getPrice();
-            LOG.log(Level.INFO, "{0}", entry.getKey().getType() + " quantity: "
+            LOGGER.log(Level.INFO, "{0}", entry.getKey().getType() + " quantity: "
                     + entry.getValue());
         }
-        LOG.log(Level.INFO, "{0}", "Total value: " + totalValue);
+        LOGGER.log(Level.INFO, "{0}", "Total value: " + totalValue);
     }
 
     public Map<MobileType, Integer> getCart() {

@@ -2,7 +2,7 @@ package com.kovacslaszlo.rest;
 
 import com.kovacslaszlo.service.MobileTypeDB;
 import com.kovacslaszlo.service.ShoppingCart;
-import static com.kovacslaszlo.session.Session.isValidLogin;
+import com.kovacslaszlo.util.LoginUtil;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.POST;
@@ -23,23 +23,23 @@ public class CartResource {
     private MobileTypeDB mobileTypeDB;
 
     @POST
-    @Path("/addmobile/{id}")
+    @Path("/add/{id}")
     public boolean addMobileToCart(@Context HttpServletRequest request, @PathParam("id") String id) {
-        isValidLogin(request);
+        LoginUtil.isValidLogin(request);
         return cart.addMobile(mobileTypeDB.getMobileTypeById(id), 1);
     }
 
     @POST
-    @Path("/removemobile/{id}")
+    @Path("/remove/{id}")
     public boolean removeMobileToCart(@Context HttpServletRequest request, @PathParam("id") String id) {
-        isValidLogin(request);
+        LoginUtil.isValidLogin(request);
         return cart.removeMobileById(id, 1);
     }
 
     @POST
     @Path("/purchasecart")
     public void purchaseCart(@Context HttpServletRequest request) {
-        isValidLogin(request);
+        LoginUtil.isValidLogin(request);
         cart.purchaseCart();
     }
 }

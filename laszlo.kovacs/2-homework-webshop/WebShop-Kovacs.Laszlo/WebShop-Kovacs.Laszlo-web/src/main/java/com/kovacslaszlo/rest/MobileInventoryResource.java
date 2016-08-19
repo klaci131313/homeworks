@@ -1,7 +1,7 @@
 package com.kovacslaszlo.rest;
 
 import com.kovacslaszlo.service.MobileTypeDB;
-import static com.kovacslaszlo.session.Session.isValidLogin;
+import com.kovacslaszlo.util.LoginUtil;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,7 +27,8 @@ public class MobileInventoryResource implements Serializable {
 
     @Inject
     private MobileTypeDB mobileTypeDB;
-    private static final transient Logger LOGGER
+
+    private static final Logger LOGGER
             = Logger.getLogger(UserDBResource.class.getName());
 
     @GET
@@ -38,20 +39,20 @@ public class MobileInventoryResource implements Serializable {
     }
 
     @POST
-    @Path("/addmobile/{id}/{piece}")
+    @Path("/add/{id}/{piece}")
     public void addMobile(@Context HttpServletRequest request,
             @PathParam("id") String id, @PathParam("piece") int piece) {
-        isValidLogin(request);
+        LoginUtil.isValidLogin(request);
         mobileTypeDB.returnMobile(mobileTypeDB.getMobileTypeById(id), piece);
         LOGGER.log(Level.INFO, "Added mobiles!");
     }
 
     @POST
-    @Path("/removemobile/{id}/{piece}")
+    @Path("/remove/{id}/{piece}")
     @Consumes(MediaType.TEXT_PLAIN)
     public boolean removeMobile(@Context HttpServletRequest request,
             @PathParam("id") String id, @PathParam("piece") int piece) {
-        isValidLogin(request);
+        LoginUtil.isValidLogin(request);
         return mobileTypeDB.returnMobile(mobileTypeDB.getMobileTypeById(id), -piece);
     }
 }

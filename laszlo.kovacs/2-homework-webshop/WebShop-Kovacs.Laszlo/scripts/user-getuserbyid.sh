@@ -1,1 +1,1 @@
-curl --verbose --write-out "\n" --request GET --cookie-jar cart-cookies.txt --cookie cart-cookies.txt http://localhost:8080/WebShop-Kovacs.Laszlo-web/user/tomas13
+curl --verbose --write-out "\n" --request GET --cookie-jar cart-cookies.txt --cookie cart-cookies.txt http://localhost:8080/WebShop-Kovacs.Laszlo-web/users/dani65

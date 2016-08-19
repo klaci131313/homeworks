@@ -1,4 +1,4 @@
-package com.kovacslaszlo.session;
+package com.kovacslaszlo.util;
 
 import com.kovacslaszlo.beans.UserDTO;
 import com.kovacslaszlo.exceptions.NotValidLoginException;
@@ -9,9 +9,9 @@ import javax.servlet.http.HttpSession;
  *
  * @author Laci
  */
-public abstract class Session {
+public abstract class LoginUtil {
 
-    private Session() {
+    private LoginUtil() {
         //private constructor
     }
 

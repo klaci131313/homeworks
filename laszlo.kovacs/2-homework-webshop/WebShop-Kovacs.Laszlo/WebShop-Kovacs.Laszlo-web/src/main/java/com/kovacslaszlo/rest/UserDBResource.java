@@ -3,7 +3,7 @@ package com.kovacslaszlo.rest;
 import com.kovacslaszlo.beans.UserDTO;
 import com.kovacslaszlo.exceptions.NotValidAdminLoginException;
 import com.kovacslaszlo.service.UserDB;
-import static com.kovacslaszlo.session.Session.isValidAdminLogin;
+import com.kovacslaszlo.util.LoginUtil;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.logging.Level;
@@ -25,14 +25,15 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Laci
  */
-@Path("/user")
+@Path("/users")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class UserDBResource implements Serializable {
 
     @Inject
     private UserDB userDB;
-    private static final transient Logger LOGGER
+
+    private static final Logger LOGGER
             = Logger.getLogger(UserDBResource.class.getName());
 
     @GET
@@ -47,9 +48,8 @@ public class UserDBResource implements Serializable {
     }
 
     @POST
-    @Path("/adduser")
     public void addUser(@Context HttpServletRequest request, UserDTO user) {
-        if (isValidAdminLogin(request)) {
+        if (LoginUtil.isValidAdminLogin(request)) {
             userDB.registrate(user);
             LOGGER.log(Level.INFO, "{0} user created!", user.getUserName());
         } else {
@@ -73,9 +73,9 @@ public class UserDBResource implements Serializable {
     }
 
     @DELETE
-    @Path("/removeuser/{username}")
+    @Path("/{username}")
     public void deleteUser(@Context HttpServletRequest request, @PathParam("username") String username) {
-        if (isValidAdminLogin(request)) {
+        if (LoginUtil.isValidAdminLogin(request)) {
             userDB.removeUserDTOById(username);
             LOGGER.log(Level.INFO, "{0}user removed!", username);
         } else {

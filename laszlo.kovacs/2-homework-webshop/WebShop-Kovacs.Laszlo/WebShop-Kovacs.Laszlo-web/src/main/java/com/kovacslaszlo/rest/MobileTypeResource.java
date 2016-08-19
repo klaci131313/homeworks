@@ -3,7 +3,7 @@ package com.kovacslaszlo.rest;
 import com.kovacslaszlo.beans.MobileType;
 import com.kovacslaszlo.exceptions.NotValidAdminLoginException;
 import com.kovacslaszlo.service.MobileTypeDB;
-import static com.kovacslaszlo.session.Session.isValidAdminLogin;
+import com.kovacslaszlo.util.LoginUtil;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.logging.Level;
@@ -24,14 +24,16 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Laci
  */
-@Path("/mobiletype")
+@Path("/mobiletypes")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class MobileTypeResource implements Serializable {
 
     @Inject
     private MobileTypeDB mobileTypeDB;
-    private static final transient Logger LOGGER = Logger.getLogger(MobileTypeResource.class.getName());
+
+    private static final Logger LOGGER
+            = Logger.getLogger(MobileTypeResource.class.getName());
 
     @GET
     public Collection<MobileType> getAllMobileType() {
@@ -45,9 +47,8 @@ public class MobileTypeResource implements Serializable {
     }
 
     @POST
-    @Path("/addmobile")
     public void addMobileType(@Context HttpServletRequest request, MobileType mobileType) {
-        if (isValidAdminLogin(request)) {
+        if (LoginUtil.isValidAdminLogin(request)) {
             mobileTypeDB.addNewMobileType(mobileType);
             LOGGER.log(Level.INFO, "{0} type added!", mobileType.getType());
         } else {
@@ -56,9 +57,9 @@ public class MobileTypeResource implements Serializable {
     }
 
     @DELETE
-    @Path("/remove/{id}")
+    @Path("/{id}")
     public void removeMobileTypeById(@Context HttpServletRequest request, @PathParam("id") String id) {
-        if (isValidAdminLogin(request)) {
+        if (LoginUtil.isValidAdminLogin(request)) {
             mobileTypeDB.removeMobileTypeById(id);
             LOGGER.log(Level.INFO, "{0} type removed!", id);
         } else {

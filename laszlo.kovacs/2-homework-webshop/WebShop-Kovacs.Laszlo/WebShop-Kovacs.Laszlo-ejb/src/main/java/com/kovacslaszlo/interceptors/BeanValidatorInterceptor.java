@@ -1,8 +1,9 @@
 package com.kovacslaszlo.interceptors;
 
 import com.kovacslaszlo.annotations.DTOQualifier;
-import com.kovacslaszlo.exceptions.InterceptorException;
 import com.kovacslaszlo.exceptions.NotValidParametersException;
+import java.util.Arrays;
+import java.util.Optional;
 import java.util.Set;
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
@@ -23,24 +24,23 @@ public class BeanValidatorInterceptor {
     private Validator validator;
 
     @AroundInvoke
-    public Object validatorMethod(InvocationContext ic) {
-        validateObject(ic.getParameters());
-        try {
-            return ic.proceed();
-        } catch (Exception e) {
-            throw new InterceptorException(e);
-        }
+    public Object logMethod(InvocationContext ic) throws Exception {
+        validateParameters(ic.getParameters());
+        return ic.proceed();
     }
 
-    private void validateObject(Object[] objects) {
-        for (Object object : objects) {
-            if (object.getClass().isAnnotationPresent(DTOQualifier.class)) {
-                Set<ConstraintViolation<Object>> violations
-                        = validator.validate(object);
-                if (!violations.isEmpty()) {
-                    throw new NotValidParametersException("Not valid parameters");
-                }
-            }
+    private void validateParameters(Object[] parameters) {
+        Arrays.asList(parameters).stream().filter(p -> p.getClass()
+                .isAnnotationPresent(DTOQualifier.class)).forEach(p -> validateBean(p));
+    }
+
+    private void validateBean(Object o) {
+        Set<ConstraintViolation<Object>> violations = validator.validate(o);
+        Optional<String> errorMessage = violations.stream().
+                map(e -> "Validation error: " + e.getMessage() + " - property: "
+                        + e.getPropertyPath().toString() + " . ").reduce(String::concat);
+        if (errorMessage.isPresent()) {
+            throw new NotValidParametersException(errorMessage.get());
         }
     }
 }
