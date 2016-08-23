@@ -1,0 +1,195 @@
+ParkResource:
+
+1.típus:POST
+path:Kovacs.Laszlo-Park-web/park
+body:
+{
+	"name": "Vidampark",
+	"address": {
+		"country": "Hungary",
+		"city": "Kecskemet",
+		"zipCode": "6000",
+		"street": "Irinyi",
+		"houseNumber": "123"
+
+	},
+	"capital": 120000,
+	"area": 1000,
+	"ticketPrice": 150
+}
+leírás: létrehoz egy vidámparkot.
+
+2.típus:PUT
+path:Kovacs.Laszlo-Park-web/park/1
+body:
+{
+	"name": "Rempark",
+	"address": {
+		"country": "Hungary",
+		"city": "Budapest",
+		"zipCode": "1223",
+		"street": "Kerekdomb",
+		"houseNumber": "65"
+
+	},
+	"capital": 1500000,
+	"area": 1300,
+	"ticketPrice": 15
+}
+leírás: megváltoztatja annak a parknak az adatiait, aminek az id-ja 1.
+
+3.típus:DELETE
+path:path:Kovacs.Laszlo-Park-web/park/1
+body:üres
+leírás:törli az 1-es id-ú parkot
+
+4.típus:GET
+path:Kovacs.Laszlo-Park-web/park/1
+body:üres
+leírás: visszaadja az 1-es id-ú park adatait
+
+5.típus:GET
+path:Kovacs.Laszlo-Park-web/park/1/guests
+body:üres
+leírás:visszaadja az összes vendéget aki már járt az 1-es parkban
+
+6.típus:GET
+path:Kovacs.Laszlo-Park-web/park/1/guests/active
+body:üres
+leírás: visszaadja az 1-es park jelenlegi vendégeit
+
+7.típus:GET
+path:Kovacs.Laszlo-Park-web/park/1/machines
+body:üres
+leírás:visszaadja az összes gépet ami volt már az 1-es parkban
+
+8.típus:GET
+path:Kovacs.Laszlo-Park-web/park/1/machines/active
+body:üres
+leírás: visszaadja az 1-es parkban jelenleg mûködõ gépeid
+
+MachineResource:
+
+9.típus:POST
+path:Kovacs.Laszlo-Park-web/machines
+body:
+{
+	"name": "GoCart",
+	"size": 40,
+	"price": 2000,
+	"ticketPrice": 120,
+	"capacity": 20,
+	"type": "GO_CART",
+	"minimumAge": 0
+}
+leírás:létrehoz egy gépet
+
+10.típus:PUT
+path:Kovacs.Laszlo-Park-web/machines/1
+body:
+{
+	"name": "Kid Dodgem",
+	"size": 30,
+	"price": 2500,
+	"ticketPrice": 130,
+	"capacity": 20,
+	"type": "DODGEM",
+	"minimumAge": 0
+}
+leírás:létrehozza és hozzáadja az 1-es parkhoz a gépet
+
+11.pípus:PUT
+path:Kovacs.Laszlo-Park-web/machines/1/removemachine/2
+body:üres
+leírás:törli az 1-es parkból a 2-es gépet
+
+12.típus:DELETE
+path:Kovacs.Laszlo-Park-web/machines/2
+body:üres
+leírás:törli a 2-es gépet
+
+13.típus:GET
+path:Kovacs.Laszlo-Park-web/machines/2/guests
+body:üres
+leírás:visszaadja a 2-es gépen lévõ vendégeket
+
+14.típus:GET
+path:Kovacs.Laszlo-Park-web/machines/2
+body:üres
+leírás:visszaadja a 2-es gép adatait
+
+GuestResource
+
+15.típus:POST
+path:Kovacs.Laszlo-Park-web/guests
+body:
+{
+	"name": "Kiss Daniel",
+	"age": 25,
+	"money": 8500
+}
+leírás:létrehoz egy vendéget
+
+16.típus:PUT
+path:Kovacs.Laszlo-Park-web/guests/3/enterparkid/1
+body:üres
+leírás:a 3-as vendég belép az 1-es parkba
+
+17.típus:PUT
+path:Kovacs.Laszlo-Park-web/guests/enterpark/1
+body:
+{
+	"name": "Nagy Daniel",
+	"age": 25,
+	"money": 8500
+}
+leírás:létrehoz és beléptet egy vendéget az 1-es parkba
+
+18.típus:PUT
+path:Kovacs.Laszlo-Park-web/guests/3/exitpark/1
+body:üres
+leírás:a 3-as vendég kilép az 1-es parkból
+
+19.típus:PUT
+body:üres
+path:Kovacs.Laszlo-Park-web/guests/3/entermachine/2
+body:üres
+leírás:a 3-as vendég felül a 2-es gépre
+
+20.típus:PUT
+path:Kovacs.Laszlo-Park-web/guests/3/exitmachine/1
+body:üres
+leírás:a 3-as vendég leszáll a 2-es géprõl
+
+20.típus:DELETE
+path:Kovacs.Laszlo-Park-web/guests/3
+body:üres
+leírás:törli a 3-as vendéget
+
+20.típus:GET
+path:Kovacs.Laszlo-Park-web/guests/3
+body:üres
+leírás:visszaadja a 3-as vendég adatait
+
+20.típus:POST
+path:Kovacs.Laszlo-Park-web/guestbook/1
+body:üres
+leírás:létrehoz egy vendégkönyvet az 1-es parkhoz
+
+21.típus:POST
+path:Kovacs.Laszlo-Park-web/guestbook/5/3
+body:
+{
+  "text":"The park is good"
+}
+leírás:létrehoz egy bejegyzést az 5-ös vendégkönyvben a 3-as vendég
+
+22.típus:DELETE
+path:Kovacs.Laszlo-Park-web/guestbook/5
+body:üres
+leírás:törli az 5-ös vendégkönyvet
+
+23.típus:GET
+path:Kovacs.Laszlo-Park-web/guestbook/5
+body:üres
+leírás:visszaadja az 5-ös vendégkönyv adatait
